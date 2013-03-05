@@ -1,0 +1,76 @@
+# ------------------------------------------------
+# CONFIGURATION FILE #############################
+# ------------------------------------------------
+
+
+# Print some statistics in a log file
+outputLogFileName = "output.log"
+
+
+# Remove output verbosity
+quietFlag = False
+
+
+# ------------------------------------------------
+# GENE ONTOLOGY PARAMETERS #######################
+# ------------------------------------------------ 
+
+# Gene Ontology OBO file
+oboFileName = "gene_ontology_test.obo"
+
+# Type of links used when building the DAG, choices = is_a, part_of, both
+links = "is_a"
+
+# Include obsolete terms by means of "replaced_by" field in the OBO file (only when mapping is 1:1)
+obsoleteFlag = True
+
+# Include synonym terms by means of "alt_id" field in the OBO file
+alternativeFlag = True
+
+
+
+# ------------------------------------------------
+# INFORMATION CONTENT PARAMETERS #################
+# ------------------------------------------------ 
+
+# Input DB with annotation. Formats: SwissProt, GoA, "short" (see outputDBFileName)
+dbFileName = "uniprot_sprot_test.dat"
+
+# Ontology categories to be considered. F = MF, P = BP, C = CC
+ontologyList = "FPC"
+
+# Evidence codes considered 
+evidenceList = "IC,IKR,EXP,TAS,ISS,IBA,IPI,IBD,ND,NAS,IGC,IGI,ISM,IEP,IEA,ISO,ISA,IRD,RCA,IMP,IDA"
+
+# "short" version output file. Can be used as input instead the DB file to speed up parsing
+outputDBFileName = "uniprot_sprot_test.dat.short"
+
+# Information Content output file
+outputICFileName = "ic.csv"
+
+
+
+# ------------------------------------------------
+# COGIC PARAMETERS ###############################
+# ------------------------------------------------ 
+
+# Information Content input file
+inputICFileName = "ic.csv"
+
+# Reference annotation file
+inputReference = "reference_test.txt"
+
+# Predicted annotation file
+inputPredicted = "predictions_test.txt"
+
+# Filter GO term based on the distance from root
+rootDistanceFlag = None
+
+# COGIC score output file
+outputCogicScore = "outCOGIC.txt"
+
+
+
+
+
+

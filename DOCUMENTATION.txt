@@ -1,0 +1,145 @@
+
+EVIDENCE CODES
+==============
+
+With the -evSet option is possible to select a specific subset of evidence codes to filter a reference database to calculate the IC. All possible group names are listed below. The evidence codes grouping is the same as described in the Gene Onotology website (http://www.geneontology.org/GO.evidence.shtml). The only new subset is the "cafa" one that is composed by the same codes considered by the CAFA organizers.
+
+ 
+cafa
+----
+	EXP, IDA, IMP, IGI, IEP, TAS, IC 
+
+experimental
+------------
+	EXP: Inferred from Experiment
+	IDA: Inferred from Direct Assay	
+	IPI: Inferred from Physical Interaction
+	IMP: Inferred from Mutant Phenotype
+	IGI: Inferred from Genetic Interaction
+	IEP: Inferred from Expression Pattern
+
+computational
+-------------
+	ISS: Inferred from Sequence or Structural Similarity
+	ISO: Inferred from Sequence Orthology
+	ISA: Inferred from Sequence Alignment
+	ISM: Inferred from Sequence Model
+	IGC: Inferred from Genomic Context
+	IBA: Inferred from Biological aspect of Ancestor
+	IBD: Inferred from Biological aspect of Descendant
+	IKR: Inferred from Key Residues
+	IRD: Inferred from Rapid Divergence
+	RCA: inferred from Reviewed Computational Analysis
+
+author
+------
+	TAS: Traceable Author Statement
+	NAS: Non-traceable Author Statement
+
+curator
+-------
+	IC: Inferred by Curator
+	ND: No biological Data available
+
+automatic
+---------
+	IEA: Inferred from Electronic Annotation
+
+
+
+
+
+FILE FORMAT & SOUCE
+===================
+
+
+IC program
+----------
+
+INPUT:
+
+1 - Gene Ontology obo file 
+
+		Downloaded from http://www.geneontology.org/GO.downloads.ontology.shtml
+
+
+2 - Annotation database file (one of the following):
+
+	- SwissProt flat file 
+
+		Download the "TEXT" version from http://www.uniprot.org/downloads 
+
+	- GoA
+		
+		Download the UniProtKB Gene association file from http://www.ebi.ac.uk/GOA/downloads.html
+
+	- Short version file:
+
+		You can create this file running the IC program with a SwissProt or GoA database as input. The first line must start with "##" followed by TAB delimited fields of "key:value" pairs. The keys must be identical as reported in the example: source file name = "Source", list of evidence codes considered = "EvidenceCodes", list of ontology used = "Ontology". All other lines contain the UniProtKB accession followed by a TAB and a list of space separated GO terms associaced with the relative ontology (i.e. P) and evidence code (i.e. IMP).   
+
+		## Source:input/uniprot_sprot.dat	EvidenceCodes:TAS,IEP,IPI,IMP,EXP,IC,IGI,IDA	Ontology:P,C,F
+		P37646	GO:0071111,F,IDA GO:0005515,F,IPI GO:0048870,P,IMP
+		P37647	GO:0008673,F,IDA GO:0019698,P,IMP GO:0042840,P,IMP
+		P37642	GO:0005215,F,IMP
+
+
+
+OUTPUT:
+
+1 - Information Content file
+
+		The first line is the same as described for the "Short version file" (see INPUT). All other lines contains a go term and the corresponding ontology and information content value separated by a comma.
+
+		## Source:input/uniprot_sprot.dat	EvidenceCodes:TAS,IEP,IMP,EXP,IC,IGI,IDA	Ontology:P,C,F
+		GO:0046919,F,9.6770887085
+		GO:0046430,P,11.5755715716
+		GO:0021682,P,10.476959283
+
+
+2 - Annotation database short version file 
+		
+		See "Short version file" in the INPUT section above for the format specifications.
+
+
+
+COGIC program
+-------------
+
+INPUT:
+
+1 - Gene Ontology obo file 
+
+		Download from http://www.geneontology.org/GO.downloads.ontology.shtml
+
+
+2 - Information Content file
+
+		See "Information Content file" in the OUTPUT section of the IC program.
+
+
+3 - Reference Annotation
+		
+		Each line must contains a target name and a go term separated with a space or a TAB. 
+
+		T05187 GO:0008150
+		T05187 GO:0009987
+		T21397 GO:0070997
+		T21397 GO:0010941	
+		
+
+4 - Predicted Annotation
+
+		Each line must contains a target name, a go term and the corresponding score. All the three fields must be separated with a space or a TAB.
+
+		T05187 GO:0008150 0.956472
+		T05187 GO:0009987 0.564772
+		T21397 GO:0070997 1.000000
+		T21397 GO:0010941 0.564443
+		
+
+OUTPUT:
+
+1 - Output score file
+
+
+
